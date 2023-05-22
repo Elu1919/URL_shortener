@@ -1,7 +1,7 @@
 // Require
 const express = require('express')
 const exphbs = require('express-handlebars')
-const mongoose = require('mongoose')
+require('./config/mongoose')
 
 const routes = require('./routes')
 
