@@ -1,0 +1,39 @@
+<div class="container">
+
+  <div class="card mx-auto mt-5 p-4"
+       style="width: 70%;">
+
+    <div class="mx-auto mt-4">
+      <h3 class="card-title fw-bold">URL Shortener</h3>
+    </div>
+
+    <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png"
+         class="card-img-top mx-auto mt-4 mb-5"
+         style="width: 80px"
+         alt="...">
+
+    <div class="card-body">
+      <form action="/shorten/{{ this._id }}"
+            method="post">
+
+        <!-- shorten link -->
+        <div class="mb-4">
+          <h5 class="fw-bold">Success! Please use this link:</h5>
+          <a href=" {{ originalLink }} "
+             class="fw-bold"
+             id="shorten-link">{{ originalLink }}</a>
+        </div>
+
+        <!-- submit -->
+        <div class="d-grid gap-2 col-3 mx-auto">
+          <button type="button"
+                  class="btn btn-primary "
+                  id="btn-copy">Copy</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</div>
