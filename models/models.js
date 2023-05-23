@@ -10,10 +10,9 @@ const Models = {
     const num = "0123456789"
 
     // Variable Declaration
-    const shorten = "ACtransform/"
     const shortenLength = 5
 
-    let shortenLink = shorten
+    let shortenLink = ""
 
     for (i = 0; i <= shortenLength - 1; i++) {
 
