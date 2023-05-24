@@ -1,5 +1,3 @@
-const Shorten = require("./shorten")
-
 const Models = {
 
   randomShortenLink() {
@@ -23,6 +21,22 @@ const Models = {
 
     }
     return shortenLink
+  },
+
+  copyLink() {
+
+    const link = document.getElementById('shorten-link').innerText
+    const btnCopy = document.querySelector('#btn-copy')
+
+    btnCopy.addEventListener('click', () => {
+
+      navigator.clipboard.writeText(link)
+        .then(() => alert('copied'))
+        .catch(err => console.log(err))
+
+      console.log("copied")
+
+    })
   },
 
 }

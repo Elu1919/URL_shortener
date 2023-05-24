@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="card mx-auto mt-5 p-4"
-       style="width: 70%;">
+       style="width: 450px;">
 
     <div class="mx-auto mt-4">
       <h3 class="card-title fw-bold">URL Shortener</h3>
@@ -20,15 +20,33 @@
         <div class="mb-4">
           <h5 class="fw-bold">Success! Please use this link:</h5>
           <a href=" {{ originalLink }} "
+             target="_blank"
              class="fw-bold"
-             id="shorten-link">http://localhost:3000/ACtransform/{{ shortenLink }}</a>
+             id="shorten-link">http://localhost:3000/{{ shortName }}/{{ shortenLink }} <i
+               class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
         </div>
 
         <!-- submit -->
         <div class="d-grid gap-2 col-3 mx-auto">
           <button type="button"
                   class="btn btn-primary "
-                  id="btn-copy">Copy</button>
+                  id="btn-copy"
+                  onclick="copy()">Copy</button>
+
+          <a class="btn btn-secondary"
+             href="/"
+             role="button"><i class="fa-solid fa-reply fa-lg"></i></a>
+
+          <script>
+            function copy() {
+              const link = document.getElementById('shorten-link').innerText
+
+              navigator.clipboard.writeText(link)
+                .then(() => alert('copied'))
+                .catch(err => console.log(err))
+            }
+          </script>
         </div>
 
       </form>

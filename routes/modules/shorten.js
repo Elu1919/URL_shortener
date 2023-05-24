@@ -16,24 +16,25 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
 
   const originalLink = req.body.originalLink
+  const shortName = "ACtransform"
+
 
   Shorten.find({ originalLink })
     .then(data => {
       if (data.length > 0) {
         const shortenLink = data[0].shortenLink
-        res.render(`shorten`, { originalLink, shortenLink })
-        console.log('URL be found from Shorten')
+        res.render(`shorten`, { originalLink, shortenLink, shortName })
 
       } else {
         const shortenLink = Models.randomShortenLink(originalLink)
 
         return Shorten.create({ originalLink, shortenLink })
-          .then((link) => {
-            res.render(`shorten`, { originalLink, shortenLink })
-            console.log('create a new shorten')
+          .then(() => {
+            res.render(`shorten`, { originalLink, shortenLink, shortName })
           })
           .catch(err => console.log(err))
       }
+
     })
     .catch(err => console.log(err))
 })
