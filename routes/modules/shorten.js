@@ -2,6 +2,7 @@
 const express = require('express')
 const Shorten = require('../../models/shorten')
 const Models = require('../../models/models')
+const shorten = require('../../models/shorten')
 
 // Variable Declaration
 const router = express.Router()
@@ -24,17 +25,23 @@ router.post('/', (req, res) => {
       if (data.length > 0) {
         const shortenLink = data[0].shortenLink
         res.render(`shorten`, { originalLink, shortenLink, shortName })
+        //console.log('find by Shorten')
 
       } else {
-        const shortenLink = Models.randomShortenLink(originalLink)
+        Shorten.find({})
+          .lean()
+          .then(data => {
+            const shortenLink = Models.randomShortenLink(data)
 
-        return Shorten.create({ originalLink, shortenLink })
-          .then(() => {
-            res.render(`shorten`, { originalLink, shortenLink, shortName })
+            Shorten.create({ originalLink, shortenLink })
+              .then(() => {
+                res.render(`shorten`, { originalLink, shortenLink, shortName })
+                //console.log('create a new shorten')
+              })
+              .catch(err => console.log(err))
           })
           .catch(err => console.log(err))
       }
-
     })
     .catch(err => console.log(err))
 })
