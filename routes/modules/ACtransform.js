@@ -9,12 +9,13 @@ const router = express.Router()
 /* GET */
 router.get('/:shortenLink', (req, res) => {
 
-  const { shortenLink } = req.params.shortenLink
+  const { shortenLink } = req.params
 
-  Shorten.find(shortenLink)
+  Shorten.find({ shortenLink })
     .lean()
     .then(data => {
       const originalLink = data[0].originalLink
+      console.log(shortenLink + " : " + originalLink)
       res.redirect(originalLink)
     })
     .catch(err => console.log(err))
