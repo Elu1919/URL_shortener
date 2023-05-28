@@ -15,7 +15,6 @@ router.get('/:shortenLink', (req, res) => {
     .lean()
     .then(data => {
       const originalLink = data[0].originalLink
-      console.log(shortenLink + " : " + originalLink)
       res.redirect(originalLink)
     })
     .catch(err => console.log(err))
